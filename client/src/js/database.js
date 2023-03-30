@@ -17,7 +17,7 @@ export const putDb = async (content) => {
   console.log('Saving content to database...');
 
   const contactDb = await openDB('jate', 1);
-  const tx = contactDb. transaction('jate', 'writeonly');
+  const tx = contactDb.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
   const request = store.add({ content });
 
@@ -39,10 +39,11 @@ export const getDb = async () => {
 
   const result = await request;
   if (!result) {
-    console.error('Content not retrieved - No result from request', result);
+    console.error('Content not retrieved - No result from request');
+    return;
   }
   else console.log('Content retrieved from database', result)
-  return result;
+  return result[result.length-1].content;
 };
 
 initdb();
