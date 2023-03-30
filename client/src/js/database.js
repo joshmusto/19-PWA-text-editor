@@ -16,9 +16,9 @@ const initdb = async () =>
 export const putDb = async (content) => {
   console.log('Saving content to database...');
 
-  const contactDb = await openDB('contact', 1);
-  const tx = contactDb. transaction('contact', 'readwrite');
-  const store = tx.objectStore('contact');
+  const contactDb = await openDB('jate', 1);
+  const tx = contactDb. transaction('jate', 'writeonly');
+  const store = tx.objectStore('jate');
   const request = store.add({ content });
 
   const result = await request;
@@ -26,23 +26,23 @@ export const putDb = async (content) => {
     console.log('Content saved to database', result);
   }
   else console.error('Content not saved to database - No result from request');
-}
+};
 
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
   console.log('GET from database...');
 
-  const contactDb = await openDB('contact', 1);
-  const tx = contactDb.transation('contact', 'readonly');
-  const store = tx.objectStore('content');
+  const contactDb = await openDB('jate', 1);
+  const tx = contactDb.transaction('jate', 'readonly');
+  const store = tx.objectStore('jate');
   const request = store.getAll();
 
   const result = await request;
-  if (request) {
-    console.log('Content retrieved from database', result);
-    return result;
+  if (!result) {
+    console.error('Content not retrieved - No result from request', result);
   }
-  else console.error('Content not retrieved - No result from request')
-}
+  else console.log('Content retrieved from database', result)
+  return result;
+};
 
 initdb();
