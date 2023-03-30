@@ -2,7 +2,7 @@
 
 ## Description
 
-description
+A simple text editor that can be downloaded and installed locally. Text is saved and loaded between sessions. 
 
 ## Table of Contents
 
@@ -13,11 +13,12 @@ description
 
 ## Usage
 
-screenshot
+<br>![screenshot of site](./assets/screenshot.PNG)
 
 ## Credits
 
 This program was made using starter code.
+Additional advising and code was provided by a learning assistant. 
 
 ## Contribution
 
